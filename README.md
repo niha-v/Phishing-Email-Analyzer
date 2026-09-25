@@ -13,7 +13,6 @@ Built in pure Python with no third-party dependencies.
 | **Links** | Anchor text vs. real destination, lookalike/typosquat domains (homoglyph + Levenshtein), raw IP URLs, URL shorteners, punycode, high-abuse TLDs, `@` obfuscation, HTTP |
 | **Content** | Urgency and pressure language, requests for credentials, generic greetings, embedded forms and scripts |
 | **Attachments** | Double extensions (`invoice.pdf.html`), executables, macro-enabled Office files, HTML smuggling / credential forms, archives, MD5/SHA256 hashing |
-| **Threat intel** | Optional VirusTotal lookups for attachment hashes and URLs |
 
 Each finding carries a severity (low / medium / high) that feeds a 0–100 risk score and a verdict: **Likely Benign**, **Suspicious**, or **Likely Phishing**.
 
@@ -31,10 +30,6 @@ python analyze.py samples/ --summary
 
 # Export JSON (for a SIEM/SOAR) and Markdown case reports (for a ticket)
 python analyze.py samples/ --json results.json --report-dir reports/
-
-# Enrich with VirusTotal (free API key) Optional
-export VT_API_KEY=your_key_here
-python analyze.py samples/phish_sample.eml --vt
 ```
 
 Requires Python 3.9+. To run the tests: `pip install pytest && pytest`.
@@ -88,8 +83,7 @@ phishscan/
 │   ├── parser.py         # .eml → structured data (headers, bodies, links, attachments)
 │   ├── checks.py         # detection rules and reference lists (brands, TLDs, extensions)
 │   ├── analyzer.py       # runs checks, scores risk, extracts IOCs
-│   ├── report.py         # console, JSON, and Markdown output; defanging
-│   └── enrich.py         # optional VirusTotal enrichment
+│   └── report.py         # console, JSON, and Markdown output; defanging
 ├── samples/              # safe test emails (fake domains, RFC 5737 documentation IPs)
 ├── examples/             # sample generated report
 └── tests/                # pytest suite
@@ -116,7 +110,7 @@ The score is capped at 100. **≥ 60** means Likely Phishing, **25–59** means 
 
 - [ ] QR code extraction and decoding from image attachments (quishing)
 - [ ] Full Public Suffix List support via `tldextract`
-- [ ] URLScan.io and AbuseIPDB enrichment
+- [ ] Threat-intel enrichment (VirusTotal, URLScan.io, AbuseIPDB)
 - [ ] Parse `.msg` (Outlook) files
 - [ ] Web UI (Flask) for drag-and-drop analysis
 
