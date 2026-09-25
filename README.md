@@ -1,8 +1,10 @@
 # PhishScan: Phishing Email Analyzer
 
+<img src = "https://github.com/niha-v/Phishing-Email-Analyzer/blob/main/Phishing-email-graphic.jpg" width = 400>
+
 A static analysis tool that triages suspicious emails (`.eml` files) the way a SOC analyst would. It parses headers, checks sender authentication, inspects links and attachments, scores the risk, and outputs defanged IOCs plus a ready-to-paste case report.
 
-Built in pure Python with no third-party dependencies.
+Built using Python with no third-party dependencies.
 
 ## Features
 
