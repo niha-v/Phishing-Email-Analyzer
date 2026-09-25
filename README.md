@@ -32,7 +32,7 @@ python analyze.py samples/ --summary
 # Export JSON (for a SIEM/SOAR) and Markdown case reports (for a ticket)
 python analyze.py samples/ --json results.json --report-dir reports/
 
-# Enrich with VirusTotal (free API key; rate-limited to 4 requests/min)
+# Enrich with VirusTotal (free API key) Optional
 export VT_API_KEY=your_key_here
 python analyze.py samples/phish_sample.eml --vt
 ```
