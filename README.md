@@ -2,18 +2,21 @@
 
 <img src = "https://github.com/niha-v/Phishing-Email-Analyzer/blob/main/Phishing-email-graphic.jpg" width = 400>
 
+# PhishScan: Phishing Email Analyzer
+
 A static analysis tool that triages suspicious emails (`.eml` files) the way a SOC analyst would. It parses headers, checks sender authentication, inspects links and attachments, scores the risk, and outputs defanged IOCs plus a ready-to-paste case report.
 
-Built using Python with no third-party dependencies.
+Built in pure Python with no third-party dependencies.
 
 ## Features
 
 | Area | What it checks |
 |---|---|
 | **Authentication** | SPF, DKIM, and DMARC results from `Authentication-Results` / `Received-SPF` |
-| **Sender** | Return-Path and Reply-To mismatches, free-webmail reply addresses, display-name brand impersonation, lookalike sender domains, Message-ID origin |
+| **Sender** | Return-Path and Reply-To mismatches (downgraded when DMARC passes), free-webmail reply addresses, brand impersonation in the display name or subject line, lookalike sender domains, Message-ID origin |
 | **Links** | Anchor text vs. real destination, lookalike/typosquat domains (homoglyph + Levenshtein), raw IP URLs, URL shorteners, punycode, high-abuse TLDs, `@` obfuscation, HTTP |
 | **Content** | Urgency and pressure language, requests for credentials, generic greetings, embedded forms and scripts |
+| **Job scams** | Fees or payments requested from candidates, pushes to WhatsApp/Telegram, unsolicited offers and "congratulations", too-good-to-be-true perks, recruiting from free webmail |
 | **Attachments** | Double extensions (`invoice.pdf.html`), executables, macro-enabled Office files, HTML smuggling / credential forms, archives, MD5/SHA256 hashing |
 
 Each finding carries a severity (low / medium / high) that feeds a 0–100 risk score and a verdict: **Likely Benign**, **Suspicious**, or **Likely Phishing**.
@@ -86,6 +89,9 @@ phishscan/
 │   ├── checks.py         # detection rules and reference lists (brands, TLDs, extensions)
 │   ├── analyzer.py       # runs checks, scores risk, extracts IOCs
 │   └── report.py         # console, JSON, and Markdown output; defanging
+├── tools/
+│   ├── split_mbox.py     # split a Gmail/Takeout .mbox export into .eml files
+│   └── stats.py          # summarize a run, or compare two runs before/after
 ├── samples/              # safe test emails (fake domains, RFC 5737 documentation IPs)
 ├── examples/             # sample generated report
 └── tests/                # pytest suite
@@ -99,7 +105,40 @@ phishscan/
 | Medium | 15 |
 | Low | 5 |
 
+Each distinct rule counts **once per email** at its highest severity, so an email with ten HTTP links is scored for "Unencrypted HTTP links" one time, not ten. Informational findings (for example, a Return-Path mismatch on mail that passed DMARC) are shown but add 0 points.
+
 The score is capped at 100. **≥ 60** means Likely Phishing, **25–59** means Suspicious, and **< 25** means Likely Benign. Weights and thresholds are in `checks.py` and `analyzer.py`, so you can tune them against your own data.
+
+## Testing on real email
+
+Export a folder of email (for example, Gmail's Spam label via Google Takeout), then:
+
+```bash
+python3 tools/split_mbox.py Spam.mbox spam_eml
+python3 analyze.py spam_eml/ --json results.json --summary
+python3 tools/stats.py results.json
+```
+
+To measure the effect of a rule change, save the old results and compare:
+
+```bash
+python3 tools/stats.py results_old.json results_new.json
+```
+
+Keep real email out of version control; the `.gitignore` already excludes `*.mbox`, `spam_eml/`, and `results*.json`.
+
+## Changelog
+
+**v1.1**, tuned against a real-world set of 82 spam emails:
+- Scoring counts each rule once per email, which stopped emails from being flagged just for having many HTTP tracking links
+- Return-Path and Message-ID mismatches are informational when DMARC passes (normal for email service providers like SendGrid and Mailchimp)
+- HTTP links consolidated into a single finding
+- New job-scam detection category (fees, chat-app recruiting, unsolicited offers, free-webmail recruiters)
+- Brand impersonation now checked in the subject line; brand list expanded with retail, delivery, and payment brands
+- Stricter typo-distance for medium-length brand names to reduce false lookalike matches
+- Added `tools/split_mbox.py` and `tools/stats.py`
+
+**v1.0**: initial release
 
 ## Limitations
 
@@ -108,14 +147,7 @@ The score is capped at 100. **≥ 60** means Likely Phishing, **25–59** means 
 - Authentication results are read from headers added by the receiving server, so they're only as trustworthy as that server.
 - Rule-based detection can miss novel techniques and will produce some false positives. Treat the verdict as triage, not a final answer.
 
-## Roadmap
-
-- [ ] QR code extraction and decoding from image attachments (quishing)
-- [ ] Full Public Suffix List support via `tldextract`
-- [ ] Threat-intel enrichment (VirusTotal, URLScan.io, AbuseIPDB)
-- [ ] Parse `.msg` (Outlook) files
-- [ ] Web UI (Flask) for drag-and-drop analysis
 
 ## Disclaimer
 
-For educational and defensive use. The sample emails use fictional domains and RFC 5737 documentation IP ranges.
+For educational and defensive use. 
