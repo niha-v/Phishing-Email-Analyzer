@@ -1,0 +1,31 @@
+Return-Path: <hr.nimbuscyberlabs@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com [192.0.2.141])
+	by mx.example.com (Postfix) with ESMTPS id 7AC31C0019
+	for <jdoe@example.com>; Thu, 24 Sep 2026 10:05:12 -0400 (EDT)
+Authentication-Results: mx.example.com;
+	spf=pass smtp.mailfrom=gmail.com;
+	dkim=pass header.d=gmail.com;
+	dmarc=pass header.from=gmail.com
+From: Nimbus CyberLabs HR <hr.nimbuscyberlabs@gmail.com>
+To: jdoe@example.com
+Subject: Cybersecurity Analyst: Congratulations on Completing Your Internship
+Date: Thu, 24 Sep 2026 14:05:10 +0000
+Message-ID: <CAF3x9Lk2mQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Dear Candidate,
+
+Congratulations on completing your internship with Nimbus CyberLabs! You have
+been selected for our next batch of the paid Cybersecurity Analyst program.
+
+This is a remote position with flexible hours and no interview required.
+Analysts earn $35 per hour with weekly pay.
+
+To reserve your seat, a one-time refundable certification fee of $149 is
+required before onboarding. Please contact our hiring coordinator on WhatsApp
+at +1 555 010 0199 to complete your registration.
+
+Best regards,
+Talent Acquisition Team
+Nimbus CyberLabs

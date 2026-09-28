@@ -1,0 +1,35 @@
+Return-Path: <billing@acme-invoices.com>
+Received: from smtp.acme-invoices.com (smtp.acme-invoices.com [192.0.2.88])
+	by mx.example.com (Postfix) with ESMTP id 55CC1C0077
+	for <jdoe@example.com>; Wed, 23 Sep 2026 09:41:00 -0400 (EDT)
+Authentication-Results: mx.example.com;
+	spf=pass smtp.mailfrom=acme-invoices.com;
+	dkim=none;
+	dmarc=none header.from=acme-invoices.com
+From: Accounts Payable <billing@acme-invoices.com>
+To: jdoe@example.com
+Subject: Payment overdue - invoice #20931
+Date: Wed, 23 Sep 2026 13:40:58 +0000
+Message-ID: <a81f2@acme-invoices.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="==B=="
+
+--==B==
+Content-Type: text/plain; charset="utf-8"
+
+Hello,
+
+Our records show a payment overdue on invoice #20931. Please review the
+attached invoice and process payment immediately.
+
+Portal: https://tinyurl.com/acme-pay-20931
+
+Accounts Payable
+
+--==B==
+Content-Type: application/zip; name="invoice_20931.zip"
+Content-Disposition: attachment; filename="invoice_20931.zip"
+Content-Transfer-Encoding: base64
+
+UEsFBgAAAAAAAAAAAAAAAAAAAAAAAA==
+--==B==--
