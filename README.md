@@ -2,8 +2,6 @@
 
 <img src = "https://github.com/niha-v/Phishing-Email-Analyzer/blob/main/Phishing-email-graphic.jpg" width = 400>
 
-# PhishScan: Phishing Email Analyzer
-
 A static analysis tool that triages suspicious emails (`.eml` files) the way a SOC analyst would. It parses headers, checks sender authentication, inspects links and attachments, scores the risk, and outputs defanged IOCs plus a ready-to-paste case report.
 
 Built in pure Python with no third-party dependencies.
@@ -70,7 +68,7 @@ To export an email for analysis: in Outlook, drag the message to your desktop or
        SHA256 c9e6227e3693fcc19f948a2ee1bbcb4647aaddb7691d6c17c31a774c99bb2f61
 ```
 
-A full Markdown case report is in [`examples/phish_sample_report.md`](examples/phish_sample_report.md).
+A full Markdown case report is in [`example/phish_sample_report.md`](examples/phish_sample_report.md).
 
 ```
 $ python analyze.py samples/ --summary
@@ -93,7 +91,7 @@ phishscan/
 │   ├── split_mbox.py     # split a Gmail/Takeout .mbox export into .eml files
 │   └── stats.py          # summarize a run, or compare two runs before/after
 ├── samples/              # safe test emails (fake domains, RFC 5737 documentation IPs)
-├── examples/             # sample generated report
+├── example/             # sample generated report
 └── tests/                # pytest suite
 ```
 
