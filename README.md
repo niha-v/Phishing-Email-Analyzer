@@ -6,11 +6,12 @@ A static analysis tool that triages suspicious emails (`.eml` files) the way a S
 
 Built in pure Python with no third-party dependencies.
 
+
 ## Features
 
 | Area | What it checks |
 |---|---|
-| **Authentication** | SPF, DKIM, and DMARC results from `Authentication-Results` / `Received-SPF` |
+| **Authentication** | SPF, DKIM and DMARC results from `Authentication-Results` / `Received-SPF` |
 | **Sender** | Return-Path and Reply-To mismatches (downgraded when DMARC passes), free-webmail reply addresses, brand impersonation in the display name or subject line, lookalike sender domains, Message-ID origin |
 | **Links** | Anchor text vs. real destination, lookalike/typosquat domains (homoglyph + Levenshtein), raw IP URLs, URL shorteners, punycode, high-abuse TLDs, `@` obfuscation, HTTP |
 | **Content** | Urgency and pressure language, requests for credentials, generic greetings, embedded forms and scripts |
@@ -18,6 +19,7 @@ Built in pure Python with no third-party dependencies.
 | **Attachments** | Double extensions (`invoice.pdf.html`), executables, macro-enabled Office files, HTML smuggling / credential forms, archives, MD5/SHA256 hashing |
 
 Each finding carries a severity (low / medium / high) that feeds a 0–100 risk score and a verdict: **Likely Benign**, **Suspicious**, or **Likely Phishing**.
+
 
 ## Quick start
 
@@ -38,6 +40,7 @@ python analyze.py samples/ --json results.json --report-dir reports/
 Requires Python 3.9+. To run the tests: `pip install pytest && pytest`.
 
 To export an email for analysis: in Outlook, drag the message to your desktop or use *File → Save As*; in Gmail, use *⋮ → Download message*.
+
 
 ## Example output
 
@@ -77,6 +80,7 @@ LIKELY PHISHING  100/100  phish_sample.eml       |  URGENT: Your account has bee
 SUSPICIOUS        35/100  suspicious_sample.eml  |  Payment overdue - invoice #20931
 ```
 
+
 ## Project structure
 
 ```
@@ -95,6 +99,7 @@ phishscan/
 └── tests/                # pytest suite
 ```
 
+
 ## How scoring works
 
 | Severity | Points |
@@ -106,6 +111,7 @@ phishscan/
 Each distinct rule counts **once per email** at its highest severity, so an email with ten HTTP links is scored for "Unencrypted HTTP links" one time, not ten. Informational findings (for example, a Return-Path mismatch on mail that passed DMARC) are shown but add 0 points.
 
 The score is capped at 100. **≥ 60** means Likely Phishing, **25–59** means Suspicious, and **< 25** means Likely Benign. Weights and thresholds are in `checks.py` and `analyzer.py`, so you can tune them against your own data.
+
 
 ## Testing on real email
 
@@ -125,6 +131,7 @@ python3 tools/stats.py results_old.json results_new.json
 
 Keep real email out of version control; the `.gitignore` already excludes `*.mbox`, `spam_eml/`, and `results*.json`.
 
+
 ## Changelog
 
 **v1.1**, tuned against a real-world set of 82 spam emails:
@@ -137,6 +144,7 @@ Keep real email out of version control; the `.gitignore` already excludes `*.mbo
 - Added `tools/split_mbox.py` and `tools/stats.py`
 
 **v1.0**: initial release
+
 
 ## Limitations
 
